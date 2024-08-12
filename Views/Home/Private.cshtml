@@ -1,0 +1,36 @@
+﻿@*
+   definir a relação entre view e model
+   Não há model específico para este view
+*@
+
+@model string 
+
+@{
+    ViewData["Title"] = "Área Restrita";
+}
+
+@* deifinir a estrutura html necessária*@
+
+<h3>
+
+</h3>
+<br />
+
+@Model
+
+<br />
+<br />
+<br />
+
+@*recuperar o nome do usuário que está acessando a área restrita*@
+
+@if(User?.Identity?.IsAuthenticated ?? false) 
+{
+    @* referenciar o link de chamada da action logout() no AccountController*@
+
+    <a asp-controller="Account" 
+       asp-action="Logout" 
+       class="btn btn-danger"> Sair</a>
+
+}
+

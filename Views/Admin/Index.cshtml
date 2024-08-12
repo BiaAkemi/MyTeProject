@@ -1,0 +1,80 @@
+﻿@*
+    definir  a comunicação entre view e model - neste caso, o model será AppUser: representação do DB - será referenciado na view para que seja iterar sobre 
+    os valores com os quais esta repesentação auxilia na manipulação
+*@
+
+@model IEnumerable<AppUser>
+
+@* acima agora, é possível iterar sobre os registros que estão disponíveis para a aplicação - a partir da entity AppUser*@
+
+
+@{
+    ViewData["Title"] = "Listar Registros";
+}
+
+@* definir a estrutura html necessária*@
+
+<h3 class="bg-info text-white">@ViewData["Title"]</h3>
+
+<a asp-action="Create" class="btn btn-secondary">Criar Registro</a>
+
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+
+            <th>
+                Nome
+            </th>
+
+            <th>
+                Email
+            </th>
+
+            <th>Atualizar
+
+            </th>
+
+            <th>
+                Excluir
+
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(AppUser registro in Model)
+        {
+            <tr>
+                <td>
+                    @registro.Id
+                </td>
+
+                <td>
+                    @registro.UserName
+                </td>
+
+                <td>
+                    @registro.Email
+                </td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-idRegistro ="@registro.Id">
+                        Atual./Alt.
+                    </a>
+                </td>
+
+                <td>
+                    <form asp-action="Delete" asp-route-idRegistro="@registro.Id" method="post">
+                        <button  type="submit" class="btn btn-sm btn-danger">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+
+            </tr>    
+        
+        }
+    </tbody>
+</table>

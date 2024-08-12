@@ -1,0 +1,43 @@
+﻿@*
+    definir a comunicação entre as view e o model específico (AppUser), será usado novamente, porque o registro selecionado/identificado para a alteração/atualização 
+    tem origem a partir da entit.
+*@
+
+
+@model AppUser
+
+@{
+    ViewData["Title"] = "Atualizar/Alterar";
+}
+
+@* definição da estrutura html necessária*@
+
+<h3 class="bg-info text-white">@ViewData["Title"]</h3>
+
+<a asp-action="Index" class="btn btn-secondary"> Listar</a>
+
+<div asp-validation-summary="All" class="text-danger">
+    <form method="post"> @* a prop idRegistro é custom, portanto, precisa indicar o form como um elemento generalizado de "transporte" de dados*@
+        <div class="form-group">
+            <label asp-for="Id">Id</label>
+            <input type="text" asp-for="Id" class="form-control" disabled />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserName">Nome</label>
+            <input type="text" asp-for="UserName" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input type="text" asp-for="Email" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" name="password" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Atualizar </button>
+    </form>
+</div>
